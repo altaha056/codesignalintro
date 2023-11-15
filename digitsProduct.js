@@ -1,26 +1,14 @@
 function solution(product) {
-  if (product == 1) {
-    return product;
+  for (let i = 1; i < 5000; i++) {
+    if (p(i) === product) return i;
   }
-  if (product < 10) {
-    return parseInt("1" + product.toString());
+  function p(k) {
+    return String(k)
+      .split("")
+      .map(Number)
+      .reduce((a, b) => a * b, 1);
   }
-  let ans = "";
-  let len = 0;
-  let con = true;
-  while (con == true) {
-    for (let i = 9; i > 1; i--) {
-      if (product % i == 0) {
-        ans += i;
-        product /= i;
-        break;
-      }
-    }
-    if (ans.length > len) {
-      len = ans.length;
-    } else con = false;
-  }
-  return product == 1 ? parseInt(ans.split("").sort().join("")) : -1;
+  return -1;
 }
-let product = 12;
+let product = 1000;
 console.log(solution(product));
